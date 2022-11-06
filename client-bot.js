@@ -55,26 +55,22 @@ wizardCity.on("text", (ctx) => {
 });
 
 const wizardWelcome = new Composer();
-wizardWelcome.on("text", (ctx) => {
+wizardWelcome.on("text", async (ctx) => {
   const text = ctx.update.message.text;
   if (/^[а-яА-ЯёЁ]+$/.test(text)) {
     ctx.session.city = helpers.transformText(text);
 
     //NOTE: отправляем сообщение в админ бота
-    /*  let isUserFound = dataReader.getUser(ctx.message.chat.id); */
+    let isUserFound = dataReader.getUser(ctx.message.chat.id);
 
     if (!isUserFound) {
-      adminIds.map((userId) => {
-        bot_admin.telegram.sendMessage(userId, sendNewUser(ctx.session), {
+      console.log("isUserFound");
+      adminIds.map(async (userId) => {
+        await bot_admin.telegram.sendMessage(userId, sendNewUser(ctx.session), {
           parse_mode: "HTML",
         });
       });
     }
-    /*  adminIds.map((userId) => {
-      bot_admin.telegram.sendMessage(userId, sendNewUser(ctx.session), {
-        parse_mode: "HTML",
-      });
-    }); */
 
     dataReader.saveUser({
       name: ctx.session.name,
@@ -82,17 +78,11 @@ wizardWelcome.on("text", (ctx) => {
       city: ctx.session.city,
       userId: ctx.message.chat.id,
     });
-    ctx
-      .reply(
-        `🎉Вы успешно зарегистрировались в системе карты лояльности "Выгодный путь"!🎉`
-      )
-      .then(() => {
-        sendMenu(ctx);
-      });
+    await ctx.reply(
+      `🎉Вы успешно зарегистрировались в системе карты лояльности "Выгодный путь"!🎉`
+    );
+    await sendMenu(ctx);
 
-    /*  setTimeout(() => {
-      sendMenu(ctx);
-    }, 200); */
     return ctx.scene.leave();
   } else {
     ctx.reply("Допустимы только русские буквы.");
@@ -199,8 +189,8 @@ function sendHi(ctx) {
   );
 }
 
-function sendMenu(ctx) {
-  ctx.replyWithHTML(
+async function sendMenu(ctx) {
+  await ctx.replyWithHTML(
     "<b>⏺ Главное меню ⏺</b>\n\nТеперь вы можете пользоваться спецпредложениями от наших партеров. Достаточно только показать карту в ресторане, отеле или другом заведении из списка партнеров.",
     profile_options.reply_markup
   );
