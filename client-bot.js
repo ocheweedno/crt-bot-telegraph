@@ -61,15 +61,20 @@ wizardWelcome.on("text", (ctx) => {
     ctx.session.city = helpers.transformText(text);
 
     //NOTE: отправляем сообщение в админ бота
-    let isUserFound = dataReader.getUser(ctx.message.chat.id);
+    /*  let isUserFound = dataReader.getUser(ctx.message.chat.id); */
 
-    if (!isUserFound) {
+    /*  if (!isUserFound) {
       adminIds.map((userId) => {
         bot_admin.telegram.sendMessage(userId, sendNewUser(ctx.session), {
           parse_mode: "HTML",
         });
       });
-    }
+    } */
+    adminIds.map((userId) => {
+      bot_admin.telegram.sendMessage(userId, sendNewUser(ctx.session), {
+        parse_mode: "HTML",
+      });
+    });
 
     dataReader.saveUser({
       name: ctx.session.name,
