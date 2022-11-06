@@ -4,13 +4,20 @@
   "description": "",
   "main": "client-bot.js",
   "scripts": {
-    "dev": "nodemon client-bot.js",
+    "dev-client": "nodemon client-bot.js",
+    "dev-admin": "nodemon admin-bot.js",
     "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
+  "nodemonConfig": {
+    "ignore": [
+      "users.json"
+    ]
+  },
   "dependencies": {
     "ioredis": "^5.2.4",
+    "lodash": "^4.17.21",
     "nodemon": "^2.0.20",
     "telegraf": "^4.10.0"
   }

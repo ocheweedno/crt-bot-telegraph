@@ -1,0 +1,228 @@
+{
+  "hostel": [
+    {
+      "title": "АМАКС КОНГРЕСС-ОТЕЛЬ",
+      "desc": "Первый сетевой отель в Рязани. Комфортабельные, уютные номера спроектированы по последнему слову технического и инженерного оснащения, гарантирующего максимальный комфорт во время всего пребывания",
+      "discount": "Скидка 10% на проживание",
+      "home_url": "https://ryazan.amaks-hotels.ru/booking/",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/amaks_logotype_kongress-otel-01-104x104-1f6.jpg",
+      "uuid": "1"
+    },
+    {
+      "title": "ПАРК-ОТЕЛЬ «СОВА»",
+      "desc": "Гостиничный комплекс с собственной территорией, включающий отель и апартаменты категории 4****",
+      "discount": "Скидка 10% на размещение и услуги спа-зоны",
+      "home_url": "https://sova-rzn.ru/park-otel/",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/banner_vygodny_put-104x104-bcb.jpg",
+      "uuid": "2"
+    },
+    {
+      "title": "ГОСТИНИЧНЫЙ КОМПЛЕКС «АТЛАНТИК»",
+      "desc": "Гостиничный комплекс в центре Рязани. К услугам гостей бесплатная парковка, ресторан, сауны с бассейнами",
+      "discount": "Скидка 10% на размещение в номерах класса «Комфорт», «Семейный», «Премиум»",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/logo%281%29-104x104-a61.png",
+      "uuid": "3"
+    },
+    {
+      "title": "ОЗДОРОВИТЕЛЬНЫЙ КОМПЛЕКС «ЗВЁЗДНЫЙ»",
+      "desc": "Гостиничный комплекс в лесу на территории 20 га. Тур выходного дня. Мамалагерь. Бесплатная парковка. Сауна. Прокат спортинвентаря",
+      "discount": "Скидка 10% на проживание в гостинице",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/xxpbqsjdpik-104x104-0ff.jpg",
+      "uuid": "4"
+    },
+    {
+      "title": "КОНГРЕСС-ОТЕЛЬ ФОРУМ",
+      "desc": "Расположенный вблизи делового и культурного центра Рязани, конгресс-отель «Форум» сочетает европейское качество обслуживания, искреннее гостеприимство и предлагает широкий спектр услуг для гостей",
+      "discount": "Скидка 10% на размещение и услуги спа-салона",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/logotip-104x104-830.jpg",
+      "uuid": "5"
+    },
+    {
+      "title": "ОТЕЛЬ GREENFEEL В РЯЗАНИ",
+      "desc": "Новый современный отель сети отелей GREENFEEL",
+      "discount": "Скидка 10% на проживание",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/logotip-4-104x104-443.jpg",
+      "uuid": "6"
+    }
+  ],
+  "cafe": [
+    {
+      "title": "ИТАЛЬЯНСКИЙ РЕСТОРАН «СОВА»",
+      "desc": "Насладитесь новыми тенденциями гастрономии Италии и традиционными блюдами в современном прочтении",
+      "discount": "Скидка 10% на всё меню",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/banner_vygodny_put-104x104-bcb.jpg",
+      "uuid": "1"
+    },
+    {
+      "title": "ЧАЙНАЯ САХАРОВАРЪ",
+      "desc": "Предлагаем большой выбор фирменных Рязанских каравайцев (блинчиков) с сытными и сладкими прикусками, а также Купеческие обеды",
+      "discount": "Скидка 10% на меню",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/mir-ledenca-104x104-fe5.png",
+      "uuid": "2"
+    },
+    {
+      "title": "БАР МАРКА",
+      "desc": "Светский бар с авторскими коктейлями и вечеринками",
+      "discount": "Скидка -7% для друзей региона",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/vyveska-104x104-e24.png",
+      "uuid": "3"
+    },
+    {
+      "title": "БАР-РЕСТОРАН ЁЛКИ",
+      "desc": "Флагманский проект с паназитской кухней",
+      "discount": "Скидка -7% для друзей региона",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/trafaret-1-104x104-21c.png",
+      "uuid": "3"
+    },
+    {
+      "title": "РЕСТОРАН РАЗГОВОРЫ",
+      "desc": "Тесто и вино. Готовим весело - общаемся с душой! У нас всегда много гостей, всегда шумно и всегда весело. Музыка, еда, вино, общение - принципы, на которых строится вся концепция нашего ресторана.",
+      "discount": "Скидка -7% для друзей региона",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/logo-razgovory-01-104x104-5a3.png",
+      "uuid": "4"
+    },
+    {
+      "title": "СТЕЙК-ХАУС «СОВА»",
+      "desc": "Неповторимый интерьер и восхитительная атмосфера, где получают гастрономическое впечатление от легендарных стейков и сочных бургеров из мраморной говядины!",
+      "discount": "Скидка 10% на всё меню",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/banner_vygodny_put-104x104-bcb.jpg",
+      "uuid": "5"
+    },
+    {
+      "title": "РЕСТОРАН КАМИН",
+      "desc": "В Камине Вы найдете как традиционные рецепты в новом исполнении, так и уникальные блюда, приготовленные в дровяной печи ESTRO, которые удивят Вас глубиной и разнообразием вкуса и подарят незабываемые ощущения",
+      "discount": "Скидка 10% на всё меню",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/chernyj-bez-fona-cvetnoj-ogon-104x104-b0b.png",
+      "uuid": "6"
+    },
+    {
+      "title": "ПАРКФУД РЯЗАНЬ",
+      "desc": "Место где можно вкусно покушать, в самом сердце парка Рюмина Роща (ЦПКиО), на площади Зелёного театра",
+      "discount": "Скидка 10%",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/icon1-104x104-d0a.jpg",
+      "uuid": "7"
+    },
+    {
+      "title": "КРАФТОВАЯ БУРГЕРНАЯ ВКУС МЯСА",
+      "desc": "Сочные бургеры из под ножа, хот-доги и стейки",
+      "discount": "Скидка 10% на стейки для гостей региона",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/nanyxfywy68-104x104-151.jpg",
+      "uuid": "8"
+    },
+    {
+      "title": "РЕСТОРАН ПЛАМЯ И ВИНО",
+      "desc": "Авторская кухня от Бренд-шефа Алексея Балдина. Мясо с открытого огня. Единственный в Рязани Chef's Table",
+      "discount": "Скидка 10% на стейки для гостей региона",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/image-104x104-7ab.png",
+      "uuid": "9"
+    }
+  ],
+  "culture": [
+    {
+      "title": "МУЗЕЙ ИСТОРИИ ПЧЕЛОВОДСТВА",
+      "desc": "История пчеловодства со времен бортничества на Руси и до сегодняшнего дня. Мы знаем о пчёлах всё!",
+      "discount": "20% на пакет: экскурсия по музею и мастер-класс",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/logotip-104x104-b63.png",
+      "uuid": "1"
+    },
+    {
+      "title": "АРТ СТУДИЯ АВ",
+      "desc": "Научим работе с эпоксидной смолой с нуля. За один МК вы создадите свой шедевр и заберёт его домой",
+      "discount": "Брошку и магнит с логотипом г. Рязань вы создадите из смолы в подарок",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/1212%281%29-104x104-4b9.png",
+      "uuid": "2"
+    },
+    {
+      "title": "Я ВАМ ПОКАЖУ!",
+      "desc": "Необычные экскурсии по Рязани и области",
+      "discount": "В праздничные дни билеты на сборные экскурсии для детей до 14 лет - бесплатные",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/3920ed_b7f6bd4fe62546d6b3e166561daf6403_mv2-104x104-43c.png",
+      "uuid": "3"
+    },
+    {
+      "title": "АКТИВСПЛАВ",
+      "desc": "Сплавы на байдарках по рекам Рязанской области",
+      "discount": "Скидка 1000 руб. для детей до 12 лет",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/logotip-aktivsplav-104x104-87c.png",
+      "uuid": "4"
+    },
+    {
+      "title": "МУЗЕЙ ИСТОРИИ РЯЗАНСКОГО ЛЕДЕНЦА",
+      "desc": "Самый познавательный и сладкий музей Рязани",
+      "discount": "Скидка 10% для держателей карты",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/mir-ledenca-104x104-fe5.png",
+      "uuid": "5"
+    },
+    {
+      "title": "ШКОЛА МОЗАИКИ ТАЛИСМАН",
+      "desc": "Мастер-классы по мозаике для Взрослых и Детей. Сделай Горшок, Тарелку или Столик из мозаики",
+      "discount": "Скидка 10% на мастер-класс 'Вышивка Стеклом'",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/shkola_mozaiki_dlya_web-104x104-72b.png",
+      "uuid": "6"
+    }
+  ],
+  "souvenir": [
+    {
+      "title": "МАГАЗИН НАРОДНЫХ ПРОМЫСЛОВ «РЯЗАНСКИЙ ДВОРИК»",
+      "desc": "Загляни в глаза Рязани",
+      "discount": "Скидка 7% на ваши покупки",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/ytn4po1l6q8-104x104-e53.jpg",
+      "uuid": "1"
+    },
+    {
+      "title": "МАГАЗИН РЕДКИХ И НЕОБЫЧНЫХ СЫРОВ «СЫРНЫЙ СОМЕЛЬЕ»",
+      "desc": "Лучшие сыры России и Швейцарии, а также уникальные сыры от Рязанского сыровара",
+      "discount": "Скидка 7% на все сыры",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/chesom-avatar-instagram-104x104-996.jpg",
+      "uuid": "2"
+    },
+    {
+      "title": "ВИТРИНА",
+      "desc": "Атмосферный магазинчик в самом центре города. Подарки и сувениры, сделанные рязанцами. Город Рязань, улица Краснорядская, 21",
+      "discount": "Скидка 7% на товары с рязанской символикой. При покупке ароматный пряник в подарок",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/image-06-05-22-11-34-104x104-8ff.png",
+      "uuid": "3"
+    }
+  ],
+  "medicine": [
+    {
+      "title": "РЯЗАНСКИЙ ЦЕНТР СТОМАТОЛОГИЧЕСКОЙ ИМПЛАНТАЦИИ",
+      "desc": "Стоматология для взрослых, с гарантией качества и безопасности не на словах, а на деле. Основано в 2008 году",
+      "discount": "Скидка 15% на профилактику и цифровую диагностику",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/121-104x104-550.png",
+      "uuid": "1"
+    },
+    {
+      "title": "СТОМАТОЛОГИЧЕСКАЯ КЛИНИКА ПРАЙМ",
+      "desc": "Прайм стоматология входит в рейтинг ТОП 15 лучших сетевых стоматологий России. Все виды стоматологических услуг, качественное лечение. В нашей команде трудится 150 врачей.",
+      "discount": "Для гостей региона бесплатное КТ + Diagnocat (анализ состояния всех зубов) и консультация врача-стоматолога",
+      "home_url": "https://ya.ru",
+      "logo": "https://vp.visit-ryazan.ru/assets/cache/images/logonoboberblue-copy-104x104-055.png",
+      "uuid": "2"
+    }
+  ]
+}

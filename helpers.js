@@ -43,9 +43,32 @@ function getNameForSearch(source) {
   }
 }
 
+function getTitleOffer(source) {
+  switch (true) {
+    case source === "ho":
+      return "Отели и гостиницы 🏨";
+
+    case source === "ca":
+      return "Кафе и рестораны 🍕";
+
+    case source === "cu":
+      return "Культура и развлечения 🎭";
+
+    case source === "so":
+      return "Сувениры 🧩";
+
+    case source === "me":
+      return "Медицинский туризм👩‍⚕️";
+
+    default:
+      break;
+  }
+}
+
 module.exports = {
   setWebAppUrl: setWebAppUrl,
   transformText: transformText,
   getItemUuid: getItemUuid,
   getNameForSearch: getNameForSearch,
+  getTitleOffer: getTitleOffer,
 };
