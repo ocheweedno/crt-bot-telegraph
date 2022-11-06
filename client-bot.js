@@ -64,11 +64,12 @@ wizardWelcome.on("text", async (ctx) => {
     let isUserFound = dataReader.getUser(ctx.message.chat.id);
 
     if (!isUserFound) {
-      console.log("isUserFound");
-      adminIds.map(async (userId) => {
-        await bot_admin.telegram.sendMessage(userId, sendNewUser(ctx.session), {
-          parse_mode: "HTML",
-        });
+      adminIds.map((userId) => {
+        setTimeout(() => {
+          bot_admin.telegram.sendMessage(userId, sendNewUser(ctx.session), {
+            parse_mode: "HTML",
+          });
+        }, 5000);
       });
     }
 
@@ -78,10 +79,12 @@ wizardWelcome.on("text", async (ctx) => {
       city: ctx.session.city,
       userId: ctx.message.chat.id,
     });
-    await ctx.reply(
+    ctx.reply(
       `🎉Вы успешно зарегистрировались в системе карты лояльности "Выгодный путь"!🎉`
     );
-    await sendMenu(ctx);
+    setTimeout(() => {
+      sendMenu(ctx);
+    }, 700);
 
     return ctx.scene.leave();
   } else {
@@ -189,8 +192,8 @@ function sendHi(ctx) {
   );
 }
 
-async function sendMenu(ctx) {
-  await ctx.replyWithHTML(
+function sendMenu(ctx) {
+  ctx.replyWithHTML(
     "<b>⏺ Главное меню ⏺</b>\n\nТеперь вы можете пользоваться спецпредложениями от наших партеров. Достаточно только показать карту в ресторане, отеле или другом заведении из списка партнеров.",
     profile_options.reply_markup
   );
