@@ -63,18 +63,18 @@ wizardWelcome.on("text", (ctx) => {
     //NOTE: отправляем сообщение в админ бота
     /*  let isUserFound = dataReader.getUser(ctx.message.chat.id); */
 
-    /*  if (!isUserFound) {
+    if (!isUserFound) {
       adminIds.map((userId) => {
         bot_admin.telegram.sendMessage(userId, sendNewUser(ctx.session), {
           parse_mode: "HTML",
         });
       });
-    } */
-    adminIds.map((userId) => {
+    }
+    /*  adminIds.map((userId) => {
       bot_admin.telegram.sendMessage(userId, sendNewUser(ctx.session), {
         parse_mode: "HTML",
       });
-    });
+    }); */
 
     dataReader.saveUser({
       name: ctx.session.name,
@@ -82,13 +82,17 @@ wizardWelcome.on("text", (ctx) => {
       city: ctx.session.city,
       userId: ctx.message.chat.id,
     });
-    ctx.reply(
-      `🎉Вы успешно зарегистрировались в системе карты лояльности "Выгодный путь"!🎉`
-    );
+    ctx
+      .reply(
+        `🎉Вы успешно зарегистрировались в системе карты лояльности "Выгодный путь"!🎉`
+      )
+      .then(() => {
+        sendMenu(ctx);
+      });
 
-    setTimeout(() => {
+    /*  setTimeout(() => {
       sendMenu(ctx);
-    }, 200);
+    }, 200); */
     return ctx.scene.leave();
   } else {
     ctx.reply("Допустимы только русские буквы.");
