@@ -1,26 +1,6 @@
 const { Markup } = require("telegraf");
 
 module.exports = {
-  agreement_options: {
-    reply_markup: {
-      inline_keyboard: [
-        [
-          { text: "Сохранить ✅", callback_data: "userData_approve" },
-          { text: "Изменить ✍️", callback_data: "userData_decline" },
-        ],
-      ],
-    },
-  },
-
-  edit_options: {
-    reply_markup: Markup.inlineKeyboard([
-      [
-        Markup.button.callback("Сбросить 🔄", "reset"),
-        Markup.button.callback("◀️ Назад", "back_to_main"),
-      ],
-    ]),
-  },
-
   profile_options: {
     reply_markup: Markup.inlineKeyboard([
       [
@@ -28,7 +8,6 @@ module.exports = {
           "Моя карта 🎫",
           "https://taupe-smakager-db3f52.netlify.app/"
         ),
-        /* Markup.button.callback("Мой профиль 👤", "profile_profile"), */
       ],
       [Markup.button.callback("Спецпредложения 🎁", "profile_offer")],
     ]),
@@ -52,8 +31,8 @@ module.exports = {
 
   admin_option: {
     reply_markup: Markup.inlineKeyboard([
-      [Markup.button.callback("Клиенты 💁‍♂️", "static_client")],
-      [Markup.button.callback("Города 🏙", "static_citys")],
+      [Markup.button.callback("Клиенты 💁‍♂️", "get_client")],
+      [Markup.button.callback("Города 🏙", "get_citys")],
       [Markup.button.callback("Отправить уведомление 🔔", "send_notification")],
     ]),
   },

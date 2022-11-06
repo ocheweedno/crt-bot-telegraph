@@ -1,66 +1,68 @@
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
 const { Telegraf } = require("telegraf");
-const token = "5716052270:AAH5gIRHWAiSb3mTehBSjRoG-eQqMfgBRe4";
+const token_admin = "5716052270:AAH5gIRHWAiSb3mTehBSjRoG-eQqMfgBRe4";
 const token_client = "5658698672:AAEJoW0r5goLqycGpm64K1KXA3bF3u1WN78";
 
-const bot = new Telegraf(token);
+const bot_admin = new Telegraf(token_admin);
 const bot_client = new Telegraf(token_client);
 
 const dataReader = require("./data-reader");
 const { admin_option, admin_options_back } = require("./options");
 
+const usersData = dataReader.getUsersData();
+const dataCitys = dataReader.getCitys();
+const countUsers = usersData.length;
+const userIds = dataReader.getAllUsersId();
+
 let isSendNotification = false;
 
-bot.start((ctx) => {
-  sendAmdinMenu(ctx);
+bot_admin.start((ctx) => {
+  sendAdminMenu(ctx);
+  dataReader.saveAdmin({ userId: ctx.message.chat.id });
 });
 
-bot.on("text", (ctx) => {
+bot_admin.on("text", (ctx) => {
   const text = ctx.update.message.text;
+
+  //NOTE: отправляем сообщение в клиентский бот
   if (isSendNotification) {
-    const userIds = dataReader.getAllUsersId();
     userIds.map((userId) => {
-      bot_client.telegram.sendMessage(userId, text);
+      bot_client.telegram.sendMessage(userId, text, {
+        parse_mode: "HTML",
+      });
     });
   }
 });
 
-bot.on("callback_query", async (ctx) => {
+bot_admin.on("callback_query", async (ctx) => {
   const callback_query = ctx.update.callback_query.data;
   const chatId = ctx.update.callback_query.from.id;
   const messageId = ctx.update.callback_query.message.message_id;
 
-  const usersData = dataReader.getUsersData();
-  const dataCitys = dataReader.getCitys();
-  const countUsers = usersData.length;
-
-  if (callback_query === "static_client") {
-    bot.telegram.deleteMessage(chatId, messageId);
+  if (callback_query === "get_client") {
+    bot_admin.telegram.deleteMessage(chatId, messageId);
     sendCountUsers(ctx, countUsers);
   }
-  if (callback_query === "static_citys") {
-    bot.telegram.deleteMessage(chatId, messageId);
+  if (callback_query === "get_citys") {
+    bot_admin.telegram.deleteMessage(chatId, messageId);
     sendCityFrom(ctx, dataCitys);
   }
   if (callback_query === "back_to_admin") {
     isSendNotification = false;
-    bot.telegram.deleteMessage(chatId, messageId);
-    sendAmdinMenu(ctx);
+    bot_admin.telegram.deleteMessage(chatId, messageId);
+    sendAdminMenu(ctx);
   }
   if (callback_query === "send_notification") {
     isSendNotification = true;
-    bot.telegram.deleteMessage(chatId, messageId);
-    ctx.replyWithHTML(
-      `<b>⏺Введите сообщение для уведомления⏺\n\nПосле отправки нажмите вернитесь назад</b>`,
-      admin_options_back.reply_markup
-    );
+    bot_admin.telegram.deleteMessage(chatId, messageId);
+    sendNotification(ctx);
   }
 });
 
-bot.launch();
+bot_admin.launch();
 
-function sendAmdinMenu(ctx) {
+function sendAdminMenu(ctx) {
   ctx.replyWithHTML("<b>⏺ Главное меню ⏺</b>", admin_option.reply_markup);
 }
 
@@ -79,6 +81,13 @@ function sendCityFrom(ctx, citys) {
     .join("\n");
   ctx.replyWithHTML(
     `<b>⏺ Города ⏺</b>\n\n${html}`,
+    admin_options_back.reply_markup
+  );
+}
+
+function sendNotification(ctx) {
+  ctx.reply(
+    `⏺Введите сообщение для уведомления⏺\n\nДля изменения стиля шрифта оберните текст в следующие теги:\n\n<b>жирный</b>\n\n<i>курсив</i>\n\n<u>подчеркнутый</u>\n\n<s>перечеркнутый</s>\n\n<a href="ссылка">ссылка</a>\n\n\n❗️После отправки нажмите назад❗️`,
     admin_options_back.reply_markup
   );
 }

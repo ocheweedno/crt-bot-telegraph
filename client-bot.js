@@ -2,14 +2,18 @@ process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
 const { Telegraf, Markup, session, Scenes, Composer } = require("telegraf");
 
-const token = "5658698672:AAEJoW0r5goLqycGpm64K1KXA3bF3u1WN78";
-const bot = new Telegraf(token);
+const token_client = "5658698672:AAEJoW0r5goLqycGpm64K1KXA3bF3u1WN78";
+const token_admin = "5716052270:AAH5gIRHWAiSb3mTehBSjRoG-eQqMfgBRe4";
 
-bot.use(session());
+const bot_client = new Telegraf(token_client);
+const bot_admin = new Telegraf(token_admin);
+
+bot_client.use(session());
 
 const helpers = require("./helpers");
 const offersData = require("./database/offers.json");
 const dataReader = require("./data-reader");
+const adminIds = dataReader.getAllAdminId();
 
 const {
   profile_options,
@@ -55,6 +59,14 @@ wizardWelcome.on("text", (ctx) => {
   const text = ctx.update.message.text;
   if (/^[а-яА-ЯёЁ]+$/.test(text)) {
     ctx.session.city = helpers.transformText(text);
+
+    //NOTE: отправляем сообщение в админ бота
+    adminIds.map((userId) => {
+      bot_admin.telegram.sendMessage(userId, sendNewUser(ctx.session), {
+        parse_mode: "HTML",
+      });
+    });
+
     dataReader.saveUser({
       name: ctx.session.name,
       age: ctx.session.age,
@@ -84,9 +96,9 @@ const menuScene = new Scenes.WizardScene(
 
 const stage = new Scenes.Stage([menuScene]);
 
-bot.use(stage.middleware());
+bot_client.use(stage.middleware());
 
-bot.on("text", (ctx) => {
+bot_client.on("text", (ctx) => {
   const text = ctx.update.message.text;
   if (text === "/start" || text === "/restart") {
     sendHi(ctx);
@@ -111,13 +123,13 @@ bot.on("text", (ctx) => {
   }
 });
 
-bot.on("callback_query", async (ctx) => {
+bot_client.on("callback_query", async (ctx) => {
   const callback_query = ctx.update.callback_query.data;
   const chatId = ctx.update.callback_query.from.id;
   const messageId = ctx.update.callback_query.message.message_id;
 
   if (callback_query === "back_to_main") {
-    bot.telegram.deleteMessage(chatId, messageId);
+    bot_client.telegram.deleteMessage(chatId, messageId);
     sendMenu(ctx);
   }
 
@@ -125,7 +137,7 @@ bot.on("callback_query", async (ctx) => {
     callback_query === "profile_offer" ||
     callback_query === "back_to_offer"
   ) {
-    bot.telegram.deleteMessage(chatId, messageId);
+    bot_client.telegram.deleteMessage(chatId, messageId);
     sendOffers(ctx);
   }
 
@@ -158,7 +170,7 @@ bot.on("callback_query", async (ctx) => {
   }
 
   if (callback_query === "reset") {
-    bot.telegram.deleteMessage(chatId, messageId);
+    bot_client.telegram.deleteMessage(chatId, messageId);
     ctx.replyWithHTML("Давайте начнем сначала");
     await ctx.scene.enter("scenesWizard");
   }
@@ -166,7 +178,7 @@ bot.on("callback_query", async (ctx) => {
   console.log(chatId, messageId);
 });
 
-bot.launch();
+bot_client.launch();
 
 function sendHi(ctx) {
   ctx.reply(
@@ -197,7 +209,7 @@ function sendOfferByType(ctx, type) {
     .join("\n\n");
   const titleOffer = helpers.getTitleOffer(link);
 
-  bot.telegram.deleteMessage(chatId, messageId);
+  bot_client.telegram.deleteMessage(chatId, messageId);
 
   ctx.replyWithHTML(
     `<b>${titleOffer}</b>\n\n${html}`,
@@ -216,4 +228,9 @@ function sendOfferCard(ctx, item, keyDataBase) {
       ]),
     }
   );
+}
+
+function sendNewUser(obj) {
+  const html = `<b>🎉 У нас новый пользователь 👤</b>\n\n<b>Имя</b> - ${obj.name}\n<b>Возраст</b> - ${obj.age}\n<b>Город</b> - ${obj.city}`;
+  return html;
 }
