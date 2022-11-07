@@ -3,17 +3,17 @@ process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 const { Telegraf, Markup, session, Scenes, Composer } = require("telegraf");
 
 const token_client = "5658698672:AAEJoW0r5goLqycGpm64K1KXA3bF3u1WN78";
-const token_admin = "5716052270:AAH5gIRHWAiSb3mTehBSjRoG-eQqMfgBRe4";
+/* const token_admin = "5716052270:AAH5gIRHWAiSb3mTehBSjRoG-eQqMfgBRe4"; */
 
 const bot_client = new Telegraf(token_client);
-const bot_admin = new Telegraf(token_admin);
+/* const bot_admin = new Telegraf(token_admin); */
 
 bot_client.use(session());
 
 const helpers = require("./helpers");
 const offersData = require("./database/offers.json");
 const dataReader = require("./data-reader");
-const adminIds = dataReader.getAllAdminId();
+/* const adminIds = dataReader.getAllAdminId(); */
 
 const {
   profile_options,
@@ -60,7 +60,15 @@ wizardWelcome.on("text", async (ctx) => {
   if (/^[а-яА-ЯёЁ]+$/.test(text)) {
     ctx.session.city = helpers.transformText(text);
 
-    //NOTE: отправляем сообщение в админ бота
+    await ctx.reply(
+      `🎉Вы успешно зарегистрировались в системе карты лояльности "Выгодный путь"!🎉`
+    );
+    await ctx.replyWithHTML(
+      "<b>⏺ Главное меню ⏺</b>\n\nТеперь вы можете пользоваться спецпредложениями от наших партеров. Достаточно только показать карту в ресторане, отеле или другом заведении из списка партнеров.",
+      profile_options.reply_markup
+    );
+
+    /*     //NOTE: отправляем сообщение в админ бота
     let isUserFound = dataReader.getUser(ctx.message.chat.id);
 
     if (!isUserFound) {
@@ -71,7 +79,7 @@ wizardWelcome.on("text", async (ctx) => {
           });
         }, 5000);
       });
-    }
+    } */
 
     dataReader.saveUser({
       name: ctx.session.name,
@@ -79,12 +87,6 @@ wizardWelcome.on("text", async (ctx) => {
       city: ctx.session.city,
       userId: ctx.message.chat.id,
     });
-    ctx.reply(
-      `🎉Вы успешно зарегистрировались в системе карты лояльности "Выгодный путь"!🎉`
-    );
-    setTimeout(() => {
-      sendMenu(ctx);
-    }, 700);
 
     return ctx.scene.leave();
   } else {
