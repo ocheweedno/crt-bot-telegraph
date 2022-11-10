@@ -23,7 +23,7 @@ const {
 
 const wizardName = new Composer();
 wizardName.on("text", (ctx) => {
-  ctx.reply("Как вас зовут?");
+  ctx.reply("Давайте знакомиться. Как вас зовут?");
   return ctx.wizard.next();
 });
 
@@ -31,37 +31,37 @@ const wizardAge = new Composer();
 wizardAge.on("text", (ctx) => {
   const text = ctx.update.message.text;
 
-  if (/^[а-яА-ЯёЁ]+$/.test(text)) {
+  if (/^[а-яА-ЯёЁ]+$/.test(text) && text.length <= 10) {
     ctx.session.name = helpers.transformText(text);
-    setTimeout(() => {
-      ctx.reply("Сколько вам лет?");
-      return ctx.wizard.next();
-    }, 500);
+    ctx.reply("Сколько вам лет?");
+    return ctx.wizard.next();
   } else {
-    ctx.reply("Допустимы только русские буквы.");
+    ctx.replyWithHTML(
+      "Хорошая попытка 😅\n\n<i>Допустимы только русские буквы. Не больше 10-ти символов без пробелов.</i>"
+    );
   }
 });
 
 const wizardCity = new Composer();
 wizardCity.on("text", (ctx) => {
   const text = ctx.update.message.text;
-  if (/^[0-9 ]+$/.test(Number(text))) {
+  if (/^[0-9 ]+$/.test(Number(text)) && text <= 100) {
     ctx.session.age = text;
     ctx.reply(`${ctx.session.name}, откуда вы приехали?`);
     return ctx.wizard.next();
   } else {
-    ctx.reply("Допустимы только цифры.");
+    ctx.replyWithHTML("Интересная версия 😅\n\n<i>Допустимы только цифры.</i>");
   }
 });
 
 const wizardWelcome = new Composer();
 wizardWelcome.on("text", async (ctx) => {
   const text = ctx.update.message.text;
-  if (/^[а-яА-ЯёЁ]+$/.test(text)) {
+  if (/^[а-яА-ЯёЁ `-]+$/.test(text) && text.length <= 23) {
     ctx.session.city = helpers.transformText(text);
 
     await ctx.reply(
-      `🎉Вы успешно зарегистрировались в системе карты лояльности "Выгодный путь"!🎉`
+      `🎉 Вы успешно зарегистрировались в системе карты лояльности «Выгодный путь»! 🎉`
     );
     await ctx.replyWithHTML(
       "<b>⏺ Главное меню ⏺</b>\n\nТеперь вы можете пользоваться спецпредложениями от наших партнеров. Достаточно только показать карту в ресторане, отеле или другом заведении из списка партнеров.",
@@ -90,7 +90,9 @@ wizardWelcome.on("text", async (ctx) => {
 
     return ctx.scene.leave();
   } else {
-    ctx.reply("Допустимы только русские буквы.");
+    ctx.replyWithHTML(
+      "Хорошая попытка 😅\n\n<i>Допустимы только русские буквы. Не больше 23-х символов.</i>"
+    );
   }
 });
 

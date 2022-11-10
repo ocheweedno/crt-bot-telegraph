@@ -9,7 +9,7 @@ module.exports = {
           "https://taupe-smakager-db3f52.netlify.app/"
         ),
       ],
-      [Markup.button.callback("Спецпредложения 🎁", "profile_offer")],
+      [Markup.button.callback("Партнеры 🎁", "profile_offer")],
     ]),
   },
 
