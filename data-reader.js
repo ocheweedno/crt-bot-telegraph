@@ -23,7 +23,7 @@ function saveUser(userData) {
   return;
 }
 //NOTE: сохраняем данные админа
-function saveAdmin(adminData) {
+/* function saveAdmin(adminData) {
   const lastUsersData = getAdminData();
 
   if (!getAdmin(adminData.userId)) {
@@ -32,7 +32,7 @@ function saveAdmin(adminData) {
     return;
   }
   return;
-}
+} */
 //NOTE: получаем конкретного пользователя
 function getUser(id) {
   const lastUsersData = getUsersData();
@@ -49,10 +49,10 @@ function getAllUsersId() {
   return lastUsersData.map((item) => item.userId);
 }
 //NOTE: получаем айди всех админов
-function getAllAdminId() {
+/* function getAllAdminId() {
   const lastAdminData = getAdminData();
   return lastAdminData.map((item) => item.userId);
-}
+} */
 
 function getCitys() {
   const lastUsersData = getUsersData();
@@ -68,6 +68,5 @@ module.exports = {
   getUser: getUser,
   getCitys: getCitys,
   getAllUsersId: getAllUsersId,
-  saveAdmin: saveAdmin,
-  getAllAdminId: getAllAdminId,
+  getAdmin: getAdmin,
 };

@@ -18,20 +18,30 @@ const userIds = dataReader.getAllUsersId();
 let isSendNotification = false;
 
 bot_admin.start((ctx) => {
-  sendAdminMenu(ctx);
-  dataReader.saveAdmin({ userId: ctx.message.chat.id });
+  const isAdminFound = dataReader.getAdmin(ctx.message.chat.id);
+
+  if (isAdminFound) {
+    sendAdminMenu(ctx);
+  } else {
+    ctx.reply(`Нет доступа`);
+  }
 });
 
 bot_admin.on("text", (ctx) => {
   const text = ctx.update.message.text;
+  const isAdminFound = dataReader.getAdmin(ctx.message.chat.id);
 
-  //NOTE: отправляем сообщение в клиентский бот
-  if (isSendNotification) {
-    userIds.map((userId) => {
-      bot_client.telegram.sendMessage(userId, text, {
-        parse_mode: "HTML",
+  if (isAdminFound) {
+    //NOTE: отправляем сообщение в клиентский бот
+    if (isSendNotification) {
+      userIds.map((userId) => {
+        bot_client.telegram.sendMessage(userId, text, {
+          parse_mode: "HTML",
+        });
       });
-    });
+    }
+  } else {
+    ctx.reply(`Нет доступа`);
   }
 });
 
