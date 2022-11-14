@@ -10,6 +10,7 @@ module.exports = {
         ),
       ],
       [Markup.button.callback("Партнеры 🎁", "profile_offer")],
+      [Markup.button.callback("Помощь ❤️", "profile_help")],
     ]),
   },
 

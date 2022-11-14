@@ -73,12 +73,12 @@ bot_admin.on("callback_query", async (ctx) => {
 bot_admin.launch();
 
 function sendAdminMenu(ctx) {
-  ctx.replyWithHTML("<b>⏺ Главное меню ⏺</b>", admin_option.reply_markup);
+  ctx.replyWithHTML("<b>Главное меню</b>", admin_option.reply_markup);
 }
 
 function sendCountUsers(ctx, count) {
   ctx.replyWithHTML(
-    `<b>⏺ Бота установили ${count} раз ⏺</b>`,
+    `<b>Бота установили ${count} раз</b>`,
     admin_options_back.reply_markup
   );
 }
@@ -90,14 +90,14 @@ function sendCityFrom(ctx, citys) {
     })
     .join("\n");
   ctx.replyWithHTML(
-    `<b>⏺ Города ⏺</b>\n\n${html}`,
+    `<b>Города</b>\n\n${html}`,
     admin_options_back.reply_markup
   );
 }
 
 function sendNotification(ctx) {
   ctx.reply(
-    `⏺Введите сообщение для уведомления⏺\n\nДля изменения стиля шрифта оберните текст в следующие теги:\n\n<b>жирный</b>\n\n<i>курсив</i>\n\n<u>подчеркнутый</u>\n\n<s>перечеркнутый</s>\n\n<a href="ссылка">ссылка</a>\n\n\n❗️После отправки нажмите назад❗️`,
+    `Введите сообщение для уведомления\n\nДля изменения стиля шрифта оберните текст в следующие теги:\n\n<b>жирный</b>\n\n<i>курсив</i>\n\n<u>подчеркнутый</u>\n\n<s>перечеркнутый</s>\n\n<a href="ссылка">ссылка</a>\n\n\n❗️После отправки нажмите назад❗️`,
     admin_options_back.reply_markup
   );
 }
