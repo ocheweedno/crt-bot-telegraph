@@ -14,25 +14,14 @@ function getAdminData() {
 //NOTE: сохраняем данные пользователей
 function saveUser(userData) {
   const lastUsersData = getUsersData();
-
-  if (!getUser(userData.userId)) {
-    lastUsersData.push(userData);
-    fs.writeFileSync("./database/users.json", JSON.stringify(lastUsersData));
-    return;
-  }
-  return;
+  return new Promise((resolve) => {
+    if (!getUser(userData.userId)) {
+      lastUsersData.push(userData);
+      fs.writeFileSync("./database/users.json", JSON.stringify(lastUsersData));
+      resolve(getAllAdminId());
+    }
+  });
 }
-//NOTE: сохраняем данные админа
-/* function saveAdmin(adminData) {
-  const lastUsersData = getAdminData();
-
-  if (!getAdmin(adminData.userId)) {
-    lastUsersData.push(adminData);
-    fs.writeFileSync("./database/admin.json", JSON.stringify(lastUsersData));
-    return;
-  }
-  return;
-} */
 //NOTE: получаем конкретного пользователя
 function getUser(id) {
   const lastUsersData = getUsersData();
@@ -49,10 +38,10 @@ function getAllUsersId() {
   return lastUsersData.map((item) => item.userId);
 }
 //NOTE: получаем айди всех админов
-/* function getAllAdminId() {
+function getAllAdminId() {
   const lastAdminData = getAdminData();
   return lastAdminData.map((item) => item.userId);
-} */
+}
 
 function getCitys() {
   const lastUsersData = getUsersData();
@@ -69,4 +58,5 @@ module.exports = {
   getCitys: getCitys,
   getAllUsersId: getAllUsersId,
   getAdmin: getAdmin,
+  getAllAdminId: getAllAdminId,
 };

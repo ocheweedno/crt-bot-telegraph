@@ -3,8 +3,10 @@ process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 const { Telegraf, Markup, session, Scenes, Composer } = require("telegraf");
 
 const token_client = "5658698672:AAEJoW0r5goLqycGpm64K1KXA3bF3u1WN78";
+const token_admin = "5716052270:AAH5gIRHWAiSb3mTehBSjRoG-eQqMfgBRe4";
 
 const bot_client = new Telegraf(token_client);
+const bot_admin = new Telegraf(token_admin);
 
 bot_client.use(session());
 
@@ -65,12 +67,21 @@ wizardWelcome.on("text", async (ctx) => {
       profile_options.reply_markup
     );
 
-    dataReader.saveUser({
-      name: ctx.session.name,
-      age: ctx.session.age,
-      city: ctx.session.city,
-      userId: ctx.message.chat.id,
-    });
+    dataReader
+      .saveUser({
+        name: ctx.session.name,
+        age: ctx.session.age,
+        city: ctx.session.city,
+        userId: ctx.message.chat.id,
+      })
+      .then((allAdminId) => {
+        allAdminId.map((adminId) => {
+          //NOTE: отправляем сообщение в админский бот
+          bot_admin.telegram.sendMessage(adminId, sendNewUser(ctx.session), {
+            parse_mode: "HTML",
+          });
+        });
+      });
 
     return ctx.scene.leave();
   } else {
@@ -173,8 +184,6 @@ bot_client.on("callback_query", async (ctx) => {
     ctx.replyWithHTML("Давайте начнем сначала");
     await ctx.scene.enter("scenesWizard");
   }
-
-  console.log(chatId, messageId);
 });
 
 bot_client.launch();
@@ -234,4 +243,9 @@ function sendHelp(ctx) {
     `Если у вас остались вопросы по программе <b>«Выгодный путь»</b>, обращайтесь в наш Туристский информационный центр. Мы будем рады гостям❤️\n\nЖелаем вам хорошего отдыха!\n\n📍 ТИЦ, Почтовая, 54\n\n📞 +7 910 577 03-03\n\n🤖 @visitryazantravelbot`,
     Markup.inlineKeyboard([Markup.button.callback("◀️ Назад", "back_to_main")])
   );
+}
+
+function sendNewUser(obj) {
+  const html = `<b>🎉 У нас новый пользователь 👤</b>\n\n<b>Имя</b> - ${obj.name}\n<b>Возраст</b> - ${obj.age}\n<b>Город</b> - ${obj.city}`;
+  return html;
 }

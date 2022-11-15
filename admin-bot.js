@@ -10,11 +10,6 @@ const bot_client = new Telegraf(token_client);
 const dataReader = require("./data-reader");
 const { admin_option, admin_options_back } = require("./options");
 
-const usersData = dataReader.getUsersData();
-const dataCitys = dataReader.getCitys();
-const countUsers = usersData.length;
-const userIds = dataReader.getAllUsersId();
-
 let isSendNotification = false;
 
 bot_admin.start((ctx) => {
@@ -30,6 +25,8 @@ bot_admin.start((ctx) => {
 bot_admin.on("text", (ctx) => {
   const text = ctx.update.message.text;
   const isAdminFound = dataReader.getAdmin(ctx.message.chat.id);
+
+  const userIds = dataReader.getAllUsersId();
 
   if (isAdminFound) {
     //NOTE: отправляем сообщение в клиентский бот
@@ -49,6 +46,10 @@ bot_admin.on("callback_query", async (ctx) => {
   const callback_query = ctx.update.callback_query.data;
   const chatId = ctx.update.callback_query.from.id;
   const messageId = ctx.update.callback_query.message.message_id;
+
+  const usersData = dataReader.getUsersData();
+  const dataCitys = dataReader.getCitys();
+  const countUsers = usersData.length;
 
   if (callback_query === "get_client") {
     bot_admin.telegram.deleteMessage(chatId, messageId);
