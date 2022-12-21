@@ -46,7 +46,9 @@ wizardCity.on("text", (ctx) => {
   const text = ctx.update.message.text;
   if (/^[0-9 ]+$/.test(Number(text)) && text <= 100) {
     ctx.session.age = text;
-    ctx.reply(`${ctx.session.name}, откуда вы приехали?`);
+    ctx.replyWithHTML(
+      `${ctx.session.name}, откуда вы приехали?\n\n<i>Пример: Москва, Рязань, Воронеж</i>`
+    );
     return ctx.wizard.next();
   } else {
     ctx.replyWithHTML("Интересная версия 😅\n\n<i>Допустимы только цифры.</i>");
