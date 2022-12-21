@@ -32,8 +32,12 @@ module.exports = {
 
   admin_option: {
     reply_markup: Markup.inlineKeyboard([
-      [Markup.button.callback("Клиенты 💁‍♂️", "get_client")],
-      [Markup.button.callback("Города 🏙", "get_citys")],
+      [
+        Markup.button.webApp(
+          "Статистика 📊",
+          "https://taupe-smakager-db3f52.netlify.app/"
+        ),
+      ],
       [Markup.button.callback("Отправить уведомление 🔔", "send_notification")],
     ]),
   },
