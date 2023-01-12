@@ -48,7 +48,7 @@ bot_admin.on("callback_query", async (ctx) => {
   const messageId = ctx.update.callback_query.message.message_id;
 
   const usersData = dataReader.getUsersData();
-  const dataCitys = dataReader.getCitys();
+  const dataCitys = dataReader.getCitys().sort((a, b) => a.total - b.total);
   const countUsers = usersData.length;
 
   if (callback_query === "get_client") {
